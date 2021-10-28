@@ -1,0 +1,18 @@
+.cell {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  font-size: 3em;
+  justify-content: center;
+  align-items: center;
+
+
+}
+
+.br {
+  border-right: 4px solid black;
+}
+
+.bb {
+  border-bottom: 4px solid black;
+}

@@ -1,0 +1,72 @@
+<div id="titelPage">
+  Optalio - Tic Tac Toe
+</div>
+
+<div id="menu" *ngIf="gameStart === true || gameOver ===true">
+  <form #menuForm ="ngForm">
+    <div class="row">
+      <div *ngIf="gameStart === true && gameOver ===false" class="col">
+        <input type="text" class="form-control" ngModel name="player1" placeholder="Spieler 1">
+      </div>
+      <div *ngIf="gameStart === true && gameOver ===false" class="col">
+        <input type="text" class="form-control" ngModel name="player2" placeholder="Spieler 2">
+      </div>
+      <button class="btn btn-primary col" (click)="startGame(menuForm)" *ngIf="gameStart === true || gameOver ===true">Play</button>
+    </div>
+  </form>
+</div>
+
+<div id="namen">
+  <div class="player">Spieler 1 : <span class="name">{{player1}}</span></div>
+  <div class="player">Spieler 2 : <span class="name">{{player2}}</span></div>
+</div>
+
+<div class="row">
+<div class="col-md-4 col-sm-3">
+  <div class="board"
+       *ngFor="let row of rows">
+          <app-cell *ngFor=" let colon of colons"
+                    [colon]="colon"
+                    [row]="row"
+                    [value]="taffel[row][colon]"
+                    (click)="playerPlay(row,colon)" >
+
+          </app-cell>
+
+  </div>
+</div>
+
+<div class="col-md-8 col-sm-9">
+  <div id="tablePlace">
+    <table class="table table-bordered table-responsive">
+    <thead >
+    <tr>
+      <th >Plazierung</th>
+      <th >Name</th>
+      <th >Siege</th>
+      <th >Unentschieden</th>
+      <th >NiederSchlage</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr id="erste">
+      <td >{{getPosition1()}}</td>
+      <td>{{player1}}</td>
+      <td>{{score[0][0]}}</td>
+      <td>{{score[0][1]}}</td>
+      <td>{{score[0][2]}}</td>
+    </tr>
+    <tr id="zweite">
+      <td >{{getPosition2()}}</td>
+      <td>{{player2}}</td>
+      <td>{{score[1][0]}}</td>
+      <td>{{score[1][1]}}</td>
+      <td>{{score[1][2]}}</td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="card" *ngIf=" gameOver === true" id="ergebnis"> {{getWinner()}} hat gewonnen</div>
+</div>
+
+</div>
